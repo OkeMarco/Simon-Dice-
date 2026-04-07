@@ -47,3 +47,24 @@ function generarSecuencia ( numColores ){
    return secuenciaColores
 }
 }
+function mostrarColor(color){
+    switch(color){
+        case rojo: rojo==tColores.ROJO
+                return "rojo"
+        case verde: verde==tColores.VERDE
+                return "verde"
+        case azul: azul==tColores.AZUL
+                return "azul"
+        case dorado: dorado==tColores.DORADO
+                return "dorado"                            
+
+    }
+   }
+
+function comprobarColor(secuenciaColores,indice,color){
+    if(secuenciaColores[indice]==color){
+        return true
+    }else{
+        return false
+    }
+}
