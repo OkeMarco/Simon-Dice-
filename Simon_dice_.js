@@ -21,4 +21,29 @@ function charToColor(color){
         default: 
             return null                   
     }
+    function intToColor(numero){
+    switch(numero){
+        case 0:
+             return tColores.ROJO
+        case 1:
+            return tColores.VERDE
+        case 2:
+            return tColores.AZUL
+        case 3:
+            return tColores.DORADO
+        default: 
+            return null                   
+    }
+}
+function generarSecuencia ( numColores ){
+   const secuenciaColores=[]
+   for(let i=0; i<MAX_COLORES_SEQ;i++){
+    const aleatorio = Math.floor(Math.random() * (numColores + 1));
+     const color = intToColor(aleatorio);
+    secuenciaColores.push(color)
+
+
+   }
+   return secuenciaColores
+}
 }
