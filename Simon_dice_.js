@@ -88,13 +88,14 @@ function utilizarAyuda(secuenciaColores, indice, numAyudas) {
 function comprobarColor(secuenciaColores, indice, color) {
     return secuenciaColores[indice] === color;  
 }
-function mostrarSecuencia(secuenciaColores, numero) {
+
+function mostrarSecuencia(secuenciaColores, numero, modo) {
     let secuenciaTexto = "";
     for (let i = 0; i < numero; i++) {
         secuenciaTexto += mostrarColor(secuenciaColores[i]);
         if (i < numero - 1) secuenciaTexto += " - ";
     }
-    console.log(`Secuencia numero ${numero - 2}: ${secuenciaTexto}`);
+    console.log(`Sequence number ${numero - 2}: ${secuenciaTexto}`);
     console.log("Memoriza la secuencia y pulsa Enter para continuar...");
 }
 
