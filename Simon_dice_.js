@@ -58,10 +58,17 @@ function mostrarColor(color) {
 
 
 
-function generarSecuencia(numColores) {
+function generarSecuencia(modo) {
+    let numColores;
+    if (modo === tModo.DIFICIL) {
+        numColores = MAX_COLORES_DIFICIL;
+    } else {
+        numColores = MAX_COLORES_FACIL;
+    }
+
     const secuenciaColores = [];
     for (let i = 0; i < MAX_COLORES_SEQ; i++) {
-        const aleatorio = Math.floor(Math.random() * (numColores + 1));
+        const aleatorio = Math.floor(Math.random() * numColores);
         secuenciaColores.push(intToColor(aleatorio));
     }
     return secuenciaColores;
