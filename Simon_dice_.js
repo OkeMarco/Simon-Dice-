@@ -74,7 +74,16 @@ function generarSecuencia(modo) {
     return secuenciaColores;
 }
 
-
+function utilizarAyuda(secuenciaColores, indice, numAyudas) {
+    if (numAyudas > 0) {
+        numAyudas--;
+        console.log(`El siguiente color es el ${mostrarColor(secuenciaColores[indice])}. Te quedan ${numAyudas} ayudas!`);
+        return { usada: true, numAyudas };
+    } else {
+        console.log("No dispones de más ayudas.");
+        return { usada: false, numAyudas };
+    }
+}
 
 function comprobarColor(secuenciaColores, indice, color) {
     return secuenciaColores[indice] === color;  
