@@ -23,9 +23,13 @@ function charToColor(color) {
         case "v": return tColores.VERDE;
         case "a": return tColores.AZUL;
         case "d": return tColores.DORADO;
+        case "b": return tColores.BLANCO;
+        case "m": return tColores.MARRON;
+        case "n": return tColores.NARANJA;
+        case "x": return "AYUDA";
         default:  return null;
     }
-}   
+}
 
 function intToColor(numero) {
     switch (numero) {
@@ -33,9 +37,26 @@ function intToColor(numero) {
         case 1: return tColores.VERDE;
         case 2: return tColores.AZUL;
         case 3: return tColores.DORADO;
+        case 4: return tColores.BLANCO;
+        case 5: return tColores.MARRON;
+        case 6: return tColores.NARANJA;
         default: return null;
     }
 }
+
+function mostrarColor(color) {
+    switch (color) {
+        case tColores.ROJO:    return "Rojo";
+        case tColores.VERDE:   return "Verde";
+        case tColores.AZUL:    return "Azul";
+        case tColores.DORADO:  return "Dorado";
+        case tColores.BLANCO:  return "Blanco";
+        case tColores.MARRON:  return "Marrón";
+        case tColores.NARANJA: return "Naranja";
+    }
+}
+
+
 
 function generarSecuencia(numColores) {
     const secuenciaColores = [];
@@ -46,14 +67,7 @@ function generarSecuencia(numColores) {
     return secuenciaColores;
 }
 
-function mostrarColor(color) {
-    switch (color) {
-        case tColores.ROJO:   return "Rojo";
-        case tColores.VERDE:  return "Verde";
-        case tColores.AZUL:   return "Azul";
-        case tColores.DORADO: return "Dorado";
-    }
-}
+
 
 function comprobarColor(secuenciaColores, indice, color) {
     return secuenciaColores[indice] === color;  
