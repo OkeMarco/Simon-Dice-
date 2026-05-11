@@ -174,8 +174,7 @@ async function main() {
 
     let salir = false;
     while (!salir) {
-        console.log("")
-        console.log("Elija una opción para continuar:");
+        console.log("\nElija una opción para continuar:");
         console.log("0: Salir.");
         console.log("1: Jugar en modo sencillo.");
         console.log("2: Jugar en modo difícil.");
