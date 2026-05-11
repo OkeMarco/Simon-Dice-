@@ -99,28 +99,41 @@ function mostrarSecuencia(secuenciaColores, numero, modo) {
     console.log("Memoriza la secuencia y pulsa Enter para continuar...");
 }
 
-async function comenzarJuego(nombre, rl) {
-    const numColores = Object.keys(tColores).length - 1;
-    const secuencia = generarSecuencia(numColores);
+
+async function comenzarJuego(nombre, modo, rl) {
+    const NUM_AYUDAS = 3;
+    let numAyudas = NUM_AYUDAS;
+    const secuencia = generarSecuencia(modo);
     let longitudActual = 3;
     let juegoTerminado = false;
 
+    const hintColores = modo === tModo.DIFICIL
+        ? "(R = Rojo, V = Verde, A = Azul, D = Dorado, B = Blanco, M = Marrón, N = Naranja, x = Ayuda)"
+        : "(R = Rojo, V = Verde, A = Azul, D = Dorado, x = Ayuda)";
+
     while (!juegoTerminado) {
-        mostrarSecuencia(secuencia, longitudActual);
+        mostrarSecuencia(secuencia, longitudActual, modo);
         await pregunta(rl, "");
         console.clear();
 
+        console.log(`Ayudas disponibles: ${numAyudas}`);
         console.log(`${nombre}, introduce la secuencia de ${longitudActual} colores:`);
-        console.log("(R = Rojo, V = Verde, A = Azul, D = Dorado)");
+        console.log(hintColores);
 
         let indice = 0;
-
         while (!juegoTerminado && indice < longitudActual) {
             let colorUsuario = null;
-
             while (colorUsuario === null) {
                 const entrada = await pregunta(rl, `Color ${indice + 1}: `);
-                colorUsuario = charToColor(entrada.trim());
+                const parsed = charToColor(entrada.trim());
+
+                if (parsed === "AYUDA") {
+                    const resultado = utilizarAyuda(secuencia, indice, numAyudas);
+                    numAyudas = resultado.numAyudas;
+                    // No avanzamos indice, repetimos la pregunta
+                } else {
+                    colorUsuario = parsed;
+                }
             }
 
             if (!comprobarColor(secuencia, indice, colorUsuario)) {
@@ -135,13 +148,12 @@ async function comenzarJuego(nombre, rl) {
                 console.log("¡Enhorabuena, has ganado!");
                 juegoTerminado = true;
             } else {
-                console.log("Enhorabuena, has pasado de ronda.");
+                console.log(`Enhorabuena, has acertado la secuencia número ${longitudActual - 2}.`);
                 longitudActual++;
             }
         }
     }
 }
-const readline = require("readline");
 
 function pregunta(rl, texto) {
     return new Promise((resolve) => {
