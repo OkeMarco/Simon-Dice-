@@ -170,11 +170,31 @@ async function main() {
 
     console.log("¡Bienvenido a Simon dice!");
     const nombre = await pregunta(rl, "¿Cuál es tu nombre? ");
-    console.log(`Hola ${nombre}, pulsa una tecla para empezar a jugar.`);
-    await pregunta(rl, "");
-    await comenzarJuego(nombre, rl);
+    console.log(`Hola ${nombre}!`);
+
+    let salir = false;
+    while (!salir) {
+        console.log("\nElija una opción para continuar:");
+        console.log("0: Salir.");
+        console.log("1: Jugar en modo sencillo.");
+        console.log("2: Jugar en modo difícil.");
+
+        const opcion = await pregunta(rl, "Opción: ");
+
+        switch (opcion.trim()) {
+            case "0":
+                salir = true;
+                break;
+            case "1":
+                await comenzarJuego(nombre, tModo.FACIL, rl);
+                break;
+            case "2":
+                await comenzarJuego(nombre, tModo.DIFICIL, rl);
+                break;
+            default:
+                console.log("Opción no válida.");
+        }
+    }
 
     rl.close();
 }
-
-main().catch(console.error);
