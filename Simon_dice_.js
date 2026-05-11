@@ -1,10 +1,21 @@
 const tColores = {
-    ROJO:   0,
-    VERDE:  1,
-    AZUL:   2,
-    DORADO: 3,
-}
-const MAX_COLORES_SEQ = 12;
+    ROJO:    0,
+    VERDE:   1,
+    AZUL:    2,
+    DORADO:  3,
+    BLANCO:  4,
+    MARRON:  5,
+    NARANJA: 6,
+};
+
+const tModo = {
+    FACIL:   1,
+    DIFICIL: 2,
+};
+
+const MAX_COLORES_SEQ    = 15;
+const MAX_COLORES_FACIL  = 4;
+const MAX_COLORES_DIFICIL = 7;
 
 function charToColor(color) {
     switch (color.toLowerCase()) {
